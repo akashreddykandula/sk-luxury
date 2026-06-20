@@ -2,12 +2,7 @@ const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const Order = require('../models/Order');
 const { finalizeOrder } = require('./orderController');
-console.log ('RAZORPAY_KEY_ID:', process.env.RAZORPAY_KEY_ID);
 
-console.log (
-  'RAZORPAY_KEY_SECRET:',
-  process.env.RAZORPAY_KEY_SECRET ? 'Loaded' : 'Missing'
-);
 
 
 const razorpay = new Razorpay({
