@@ -7,6 +7,7 @@ import {
   FiDollarSign, FiUsers, FiMenu, FiX, FiLogOut, FiExternalLink
 } from 'react-icons/fi'
 import { logout } from '../../store/slices/authSlice'
+import toast from 'react-hot-toast'
 
 const navItems = [
   { to: '/admin', label: 'Dashboard', icon: FiGrid, exact: true },

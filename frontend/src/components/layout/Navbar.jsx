@@ -13,6 +13,8 @@ const collections = [
   { label: 'Clothing', to: '/collections/clothing' },
   { label: 'Jewellery', to: '/collections/jewellery' },
   { label: 'Bridal', to: '/collections/bridal' },
+  { label: 'Custom', to: '/collections/custom' },
+  { label: 'Accessories', to: '/collections/accessories' },
 ]
 
 export default function Navbar() {
@@ -216,6 +218,8 @@ export default function Navbar() {
                 { to: '/about', label: 'About Us' },
                 { to: '/contact', label: 'Contact' },
                 { to: '/track-order', label: 'Track Order' },
+                { to: '/collections/custom', label: 'Custom' },
+                { to: '/collections/accessories', label: 'Accessories' },
               ].map(item => (
                 <Link key={item.to} to={item.to} onClick={() => dispatch(closeMobileMenu())}
                   className="py-3.5 border-b border-gray-100 font-sans text-sm tracking-widest uppercase text-luxury-dark hover:text-gold transition-colors">
