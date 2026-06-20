@@ -159,7 +159,7 @@ export default function Footer () {
               <li className="flex items-start gap-3">
                 <FiMapPin size={15} className="text-gold mt-0.5 shrink-0" />
                 <span className="font-sans text-sm text-luxury-cream/60 leading-relaxed">
-                  123 Fashion Street, Banjara Hills, Hyderabad – 500034
+                  7-142,Sastri Gari Street, Prasadampadu, Vijayawada - 521108
                 </span>
               </li>
               <li className="flex items-center gap-3">

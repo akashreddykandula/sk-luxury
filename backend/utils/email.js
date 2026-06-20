@@ -23,7 +23,12 @@ const emailWrapper = (content) => `
           ${content}
         </td></tr>
         <tr><td style="background-color:#f8f5f0;padding:24px 32px;text-align:center;border-top:1px solid #eee;">
-          <p style="font-family:Arial,sans-serif;font-size:12px;color:#888;margin:0 0 8px;">SK Luxury · 123 Fashion Street, Banjara Hills, Hyderabad – 500034</p>
+          <p style="font-family:Arial,sans-serif;font-size:12px;color:#888;margin:0 0 8px;">SK Luxury · 7-142
+Sastri Gari Street 
+Prasadampadu
+Vijayawada 
+8374797955
+8885372979 – 521108</p>
           <p style="font-family:Arial,sans-serif;font-size:12px;color:#888;margin:0;">
             <a href="mailto:hello@skluxury.in" style="color:${BRAND_GOLD};text-decoration:none;">hello@skluxury.in</a> &nbsp;·&nbsp; +91 98765 43210
           </p>
