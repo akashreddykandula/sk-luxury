@@ -18,7 +18,7 @@ exports.createRazorpayOrder = async (req, res) => {
     }
 
     const options = {
-      amount: Math.round(amount * 100), // paise
+      amount: 100, // paise
       currency: 'INR',
       receipt: `sk_${orderId || Date.now()}`,
       notes: { orderId: orderId?.toString() || '' }
