@@ -64,7 +64,7 @@ export function TermsPage() {
         <p>By placing an order, you confirm that all information provided is accurate. We accept payment via Razorpay, which supports UPI, cards, and net banking. Orders are confirmed only after successful payment.</p>
       </Section>
       <Section title="Cancellation Policy">
-        <p>Orders may be cancelled within 24 hours of placement. Custom and bridal orders cannot be cancelled once production has begun. Contact us immediately at hello@skluxury.in to request a cancellation.</p>
+        <p>Orders may be cancelled within 24 hours of placement. Custom and bridal orders cannot be cancelled once production has begun. Contact us immediately at srikalacouture@gmail.com to request a cancellation.</p>
       </Section>
       <Section title="Intellectual Property">
         <p>All content on this website, including images, designs, logos, and text, is the intellectual property of SK Luxury. Unauthorised reproduction or use is strictly prohibited.</p>

@@ -174,10 +174,10 @@ export default function Footer () {
               <li className="flex items-center gap-3">
                 <FiMail size={15} className="text-gold shrink-0" />
                 <a
-                  href="mailto:hello@skluxury.in"
+                  href="mailto:srikalacouture@gmail.com"
                   className="font-sans text-sm text-luxury-cream/60 hover:text-gold transition-colors"
                 >
-                  hello@skluxury.in
+                  srikalacouture@gmail.com
                 </a>
               </li>
             </ul>
