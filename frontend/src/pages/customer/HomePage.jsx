@@ -29,6 +29,11 @@ export default function HomePage() {
       <Helmet>
         <title>SK – Luxury in Every Stitch | Premium Boutique</title>
         <meta name="description" content="Discover SK Luxury – Premium Clothing, Designer Jewellery, Bridal Collections & Custom Boutique Designs. Luxury in Every Stitch." />
+        <meta
+  name="keywords"
+  content="Sri Kala Couture, jewellery, bridal wear, clothing, fashion"
+/>
+
       </Helmet>
       <HeroSection />
       <CollectionGrid />

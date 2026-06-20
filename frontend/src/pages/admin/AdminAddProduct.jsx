@@ -82,18 +82,40 @@ export default function AdminAddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.name || !form.price || !form.description || !form.collectionType) {
-      toast.error('Please fill all required fields'); return
-    }
+    if (
+
+  !form.name ||
+
+  !form.price ||
+
+  !form.description ||
+
+  !form.collectionType ||
+
+  !form.category
+
+) {
+
+  toast.error('Please select a category')
+
+  return
+
+}
     setSaving(true)
+
     const payload = {
-      ...form,
-      price: Number(form.price),
-      salePrice: form.salePrice ? Number(form.salePrice) : 0,
-      stock: Number(form.stock),
-      tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
-      images,
-    }
+  ...form,
+  category: form.category || undefined,
+  price: Number (form.price),
+  salePrice: form.salePrice ? Number (form.salePrice) : 0,
+  stock: Number (form.stock),
+  tags: form.tags
+    ? form.tags.split (',').map (t => t.trim ()).filter (Boolean)
+    : [],
+  images,
+};
+
+
     try {
       if (isEdit) {
         await api.put(`/products/${id}`, payload)
@@ -159,13 +181,23 @@ export default function AdminAddProduct() {
                       {COLLECTION_TYPES.map(t => <option key={t} value={t} className="capitalize">{t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
                     </select>
                   </div>
-                  <div>
-                    <label className="luxury-label">Category</label>
-                    <select className="luxury-input" value={form.category} onChange={set('category')}>
-                      <option value="">Select category</option>
-                      {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-                    </select>
-                  </div>
+                 <div>
+  <label className="luxury-label">Category *</label>
+  <select
+    className="luxury-input"
+    value={form.category}
+    onChange={set ('category')}
+    required
+  >
+    <option value="">Select category</option>
+    {categories.map (c => (
+      <option key={c._id} value={c._id}>
+        {c.name}
+      </option>
+    ))}
+  </select>
+</div>
+
                 </div>
                 <div className="grid md:grid-cols-3 gap-5">
                   <div>
