@@ -14,7 +14,16 @@ export default function RegisterPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '', confirm: '' })
   const [showPass, setShowPass] = useState(false)
 
-  useEffect(() => { if (user) navigate('/') }, [user])
+  useEffect (
+  () => {
+    if (user) {
+      toast.success ('Account created successfully!');
+      navigate ('/');
+    }
+  },
+  [user, navigate]
+)
+
   useEffect(() => { if (error) { toast.error(error); dispatch(clearError()) } }, [error])
 
   const handleSubmit = (e) => {

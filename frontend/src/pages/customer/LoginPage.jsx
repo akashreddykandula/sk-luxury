@@ -13,8 +13,17 @@ export default function LoginPage() {
   const { loading, error, user } = useSelector(s => s.auth)
   const [form, setForm] = useState({ email: '', password: '' })
   const [showPass, setShowPass] = useState(false)
+  useEffect (
+  () => {
+    if (user) {
+      toast.success ('Account logged in successfully!');
+      navigate ('/');
+    }
+  },
+  [user, navigate]
+)
+  
 
-  useEffect(() => { if (user) navigate('/') }, [user])
   useEffect(() => { if (error) { toast.error(error); dispatch(clearError()) } }, [error])
 
   const handleSubmit = (e) => {
