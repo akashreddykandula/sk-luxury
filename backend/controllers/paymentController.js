@@ -34,9 +34,18 @@ exports.createRazorpayOrder = async (req, res) => {
       keyId: process.env.RAZORPAY_KEY_ID
     });
   } catch (error) {
-    console.error('Razorpay order creation error:', error.message);
-    res.status(500).json({ success: false, message: 'Failed to initiate payment. Please try again.' });
-  }
+  console.error("========== RAZORPAY ERROR ==========");
+  console.error(error);
+  console.error("Message:", error?.message);
+  console.error("Status:", error?.statusCode);
+  console.error("Response:", error?.error);
+  console.error("===================================");
+
+  res.status(500).json({
+    success: false,
+    message: error?.message || "Failed to initiate payment"
+  });
+}
 };
 
 exports.verifyPayment = async (req, res) => {
