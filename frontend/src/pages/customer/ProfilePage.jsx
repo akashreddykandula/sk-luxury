@@ -34,7 +34,9 @@ const [tab, setTab] = useState (
 
   useEffect(() => { if (error) { toast.error(error); dispatch(clearError()) } }, [error])
 
-  const handleLogout = () => { dispatch(logout()); navigate('/') }
+  const handleLogout = () => { dispatch(logout()); 
+    toast.success('Logged out successfully');
+    navigate('/') }
 
   const tabs = [
     { id: 'orders', label: 'My Orders', icon: FiPackage },

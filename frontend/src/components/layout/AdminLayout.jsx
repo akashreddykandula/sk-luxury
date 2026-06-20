@@ -24,7 +24,9 @@ export default function AdminLayout() {
   const { user } = useSelector(s => s.auth)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  const handleLogout = () => { dispatch(logout()); navigate('/login') }
+  const handleLogout = () => { dispatch(logout());
+    toast.success('Logged out successfully');
+    navigate('/login') }
 
   const Sidebar = () => (
     <div className="flex flex-col h-full bg-emerald-950">

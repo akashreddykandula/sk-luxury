@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { motion, AnimatePresence } from 'framer-motion'
+import toast from 'react-hot-toast';
+
 import { FiSearch, FiShoppingBag, FiHeart, FiUser, FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
 import { toggleCart, toggleSearch, toggleMobileMenu, closeMobileMenu } from '../../store/slices/uiSlice'
 import { logout } from '../../store/slices/authSlice'
@@ -40,6 +42,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     dispatch(logout())
+    toast.success('Logged out successfully')
     setUserMenuOpen(false)
     navigate('/')
   }
