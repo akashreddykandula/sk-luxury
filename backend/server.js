@@ -5,8 +5,6 @@ const helmet = require ('helmet');
 const morgan = require ('morgan');
 const rateLimit = require ('express-rate-limit');
 require ('dotenv').config ();
-
-const app = express ();
 const allowedOrigins = [
   'http://localhost:5173',
 
@@ -18,6 +16,10 @@ const allowedOrigins = [
 
   'https://www.srikalacouture.com',
 ];
+
+const app = express ();
+
+app.set ('trust proxy', 1);
 
 // Security middleware
 app.use (helmet ({crossOriginResourcePolicy: {policy: 'cross-origin'}}));
