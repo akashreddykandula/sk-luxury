@@ -7,6 +7,17 @@ const rateLimit = require ('express-rate-limit');
 require ('dotenv').config ();
 
 const app = express ();
+const allowedOrigins = [
+  'http://localhost:5173',
+
+  'http://localhost:3000',
+
+  'https://sk-luxury-olive.vercel.app',
+
+  'https://srikalacouture.com',
+
+  'https://www.srikalacouture.com',
+];
 
 // Security middleware
 app.use (helmet ({crossOriginResourcePolicy: {policy: 'cross-origin'}}));
@@ -20,16 +31,29 @@ const limiter = rateLimit ({
 app.use ('/api/', limiter);
 
 // CORS
+// app.use (
+//   cors ({
+//     origin: [
+//       process.env.FRONTEND_URL,
+//       'http://localhost:5173',
+//       'http://localhost:3000',
+//     ],
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//   })
+// );
 app.use (
   cors ({
-    origin: [
-      process.env.FRONTEND_URL,
-      'http://localhost:5173',
-      'http://localhost:3000',
-    ],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes (origin)) {
+        callback (null, true);
+      } else {
+        callback (new Error ('Not allowed by CORS'));
+      }
+    },
+
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
