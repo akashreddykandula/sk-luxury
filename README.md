@@ -145,42 +145,28 @@ npm run dev
 
 ```
 PORT=5000
-MONGO_URI=mongodb+srv://srikalacouture_db_user:p******d@srikala.jxnatss.mongodb.net/sk_luxury
+MONGO_URI=mongodb+srv://srikalacouture_db_user:p******@srikala.jxnatss.mongodb.net/sk_luxury
 JWT_SECRET=SK_LUXURY_SUPER_SECRET_JWT_KEY_2024_BOUTIQUE
 JWT_EXPIRE=30d
-CLOUDINARY_CLOUD_NAME=dsk
-CLOUDINARY_API_KEY=54466
-CLOUDINARY_API_SECRET=Vp2aWbpnSy-AWjh8
-RAZORPAY_KEY_ID=rzp_test_
-RAZORPAY_KEY_SECRET=roByIYhh6bCpf
-WHATSAPP_NUMBER=918374797955
-FRONTEND_URL=http://localhost:5173
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+RAZORPAY_KEY_ID=rzp_te
+RAZORPAY_KEY_SECRET=
+WHATSAPP_NUMBER=
+FRONTEND_URL=
 ```
 
 ### Frontend (.env) — already configured:
 
 ```
 VITE_API_URL=/api
-VITE_WHATSAPP_NUMBER=9183747979
-VITE_RAZORPAY_KEY=rzp_test_T0zxj
+VITE_WHATSAPP_NUMBER=
+VITE_RAZORPAY_KEY=
 ```
 
 ---
 
-## 👤 Creating Admin Account
-
-After starting the server, register a user then update their role in MongoDB:
-
-**Option 1: MongoDB Atlas UI**
-
-- Go to your Atlas cluster → Browse Collections → `users`
-- Find your user → Edit → set `role: "admin"`
-
-**Option 2: MongoDB Shell**
-
-```js
-db.users.updateOne({ email: "admin@skluxury.in" }, { $set: { role: "admin" } });
-```
 
 Then login → access `/admin` panel.
 
@@ -365,4 +351,4 @@ Update your WhatsApp number in:
 ## 📞 Support
 
 Built for SK Luxury Boutique, Hyderabad.  
-For customizations: hello@skluxury.in
+For customizations: srikalacouture@gmail.com
