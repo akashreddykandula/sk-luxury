@@ -94,7 +94,7 @@ export function ShippingPage() {
         <p>Once your order is dispatched, you will receive a shipping confirmation email with your tracking number. You can also track your order via WhatsApp by messaging us your order number.</p>
       </Section>
       <Section title="Returns & Exchanges">
-        <p>We accept returns within 7 days of delivery for unused, unwashed items in original packaging. Custom orders, jewellery, and bridal wear are not eligible for return. To initiate a return, contact us at returns@skluxury.in with your order number and reason for return.</p>
+        <p>We accept returns within 7 days of delivery for unused, unwashed items in original packaging. Custom orders, jewellery, and bridal wear are not eligible for return. To initiate a return, contact us at Srikalacouture@gmail.com or call us at [+91 8374797955] with your order number and reason for return.</p>
       </Section>
       <Section title="Damaged or Wrong Items">
         <p>If you receive a damaged or incorrect item, please contact us within 48 hours of delivery with photographs. We will arrange a replacement or full refund at no additional cost to you.</p>
