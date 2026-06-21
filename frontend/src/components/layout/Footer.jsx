@@ -76,11 +76,26 @@ export default function Footer () {
             </p>
             <div className="flex items-center gap-4">
               {[
-                {Icon: FaInstagram, href: '#', label: 'Instagram'},
-                {Icon: FaFacebook, href: '#', label: 'Facebook'},
-                {Icon: FaWhatsapp, href: '#', label: 'WhatsApp'},
-                {Icon: FaPinterest, href: '#', label: 'Pinterest'},
-                {Icon: FaYoutube, href: '#', label: 'YouTube'},
+                {
+                  Icon: FaInstagram,
+                  href: 'https://www.instagram.com/srikala_couture?igsh=MWNrMHExZWJ4bDhvMg==',
+                  label: 'Instagram',
+                },
+                {
+                  Icon: FaFacebook,
+                  href: 'https://www.facebook.com/profile.php?id=61575088107332',
+                  label: 'Facebook',
+                },
+                {
+                  Icon: FaWhatsapp,
+                  href: 'https://wa.me/918374797955',
+                  label: 'WhatsApp',
+                },
+                {
+                  Icon: FaYoutube,
+                  href: 'https://www.youtube.com/@srikalacouture',
+                  label: 'YouTube',
+                },
               ].map (({Icon, href, label}) => (
                 <a
                   key={label}
