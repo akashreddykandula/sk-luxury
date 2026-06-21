@@ -119,12 +119,12 @@ export default function Navbar() {
             </Link>
 
             {/* Right Icons */}
-            <div className="flex items-center gap-3 md:gap-5">
+            <div className="flex items-center gap-1 md:gap-5">
               <button onClick={() => dispatch(toggleSearch())} className="p-1.5 text-luxury-dark hover:text-gold transition-colors" aria-label="Search">
                 <FiSearch size={20} />
               </button>
               {user && (
-                <Link to="/wishlist" className="p-1.5 text-luxury-dark hover:text-gold transition-colors hidden md:block" aria-label="Wishlist">
+                <Link to="/wishlist" className="p-1.5 text-luxury-dark hover:text-gold transition-colors" aria-label="Wishlist">
                   <FiHeart size={20} />
                 </Link>
               )}
@@ -236,7 +236,6 @@ export default function Navbar() {
     >
       My Account
     </Link>
-
     {user?.role?.toLowerCase() === 'admin' && (
       <Link
         to="/admin"
