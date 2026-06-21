@@ -228,11 +228,36 @@ export default function Navbar() {
               ))}
               <div className="pt-4 flex flex-col gap-2">
                 {user ? (
-                  <>
-                    <Link to="/profile" onClick={() => dispatch(closeMobileMenu())} className="btn-luxury text-center">My Account</Link>
-                    <button onClick={() => { handleLogout(); dispatch(closeMobileMenu()) }} className="btn-outline text-center">Logout</button>
-                  </>
-                ) : (
+  <>
+    <Link
+      to="/profile"
+      onClick={() => dispatch(closeMobileMenu())}
+      className="btn-luxury text-center"
+    >
+      My Account
+    </Link>
+
+    {user?.role?.toLowerCase() === 'admin' && (
+      <Link
+        to="/admin"
+        onClick={() => dispatch(closeMobileMenu())}
+        className="btn-outline text-center"
+      >
+        Admin Panel
+      </Link>
+    )}
+
+    <button
+      onClick={() => {
+        handleLogout();
+        dispatch(closeMobileMenu());
+      }}
+      className="btn-outline text-center"
+    >
+      Logout
+    </button>
+  </>
+) : (
                   <>
                     <Link to="/login" onClick={() => dispatch(closeMobileMenu())} className="btn-luxury text-center">Login</Link>
                     <Link to="/register" onClick={() => dispatch(closeMobileMenu())} className="btn-outline text-center">Register</Link>
