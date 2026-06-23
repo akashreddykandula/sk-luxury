@@ -45,7 +45,7 @@ export default function ContactPage() {
               <div className="space-y-6 mb-10">
                 {[
                   { icon: FiMapPin, label: 'Our Address', value: '7-142, Sastri Gari Street, Prasadampadu, Vijayawada - 521108' },
-                  { icon: FiPhone, label: 'Phone', value: '+91 8885372979 \n+91 8374797955' },
+                  { icon: FiPhone, label: 'Phone', value: '+91 8374797955' },
                   { icon: FiMail, label: 'Email', value: 'srikalacouture@gmail.com'},
                   { icon: FiClock, label: 'Store Hours', value: 'Mon – Sat: 10:00 AM – 8:00 PM\nSunday: 11:00 AM – 6:00 PM' },
                 ].map(({ icon: Icon, label, value }) => (
