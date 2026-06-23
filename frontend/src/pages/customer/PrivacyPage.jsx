@@ -45,7 +45,7 @@ export function PrivacyPage() {
         <p>We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction. All payment transactions are encrypted using SSL technology.</p>
       </Section>
       <Section title="Contact Us">
-        <p>If you have questions about this Privacy Policy, please contact us at privacy@skluxury.in or call +91 98765 43210.</p>
+        <p>If you have questions about this Privacy Policy, please contact us at srikalacouture@gmail.com or call +91 8374797955.</p>
       </Section>
     </PolicyPage>
   )
@@ -70,7 +70,7 @@ export function TermsPage() {
         <p>All content on this website, including images, designs, logos, and text, is the intellectual property of SK Luxury. Unauthorised reproduction or use is strictly prohibited.</p>
       </Section>
       <Section title="Contact">
-        <p>For any questions regarding these Terms, contact us at legal@skluxury.in.</p>
+        <p>For any questions regarding these Terms, contact us at srikalacouture@gmail.com</p>
       </Section>
     </PolicyPage>
   )
