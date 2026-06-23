@@ -7,7 +7,7 @@ function PolicyPage({ title, children }) {
       <Helmet><title>{title} | SK Luxury</title></Helmet>
       <div className="bg-emerald-950 py-12 text-center">
         <h1 className="font-display text-4xl text-white">{title}</h1>
-        <p className="font-sans text-xs text-gold/70 tracking-widest uppercase mt-2">Last Updated: January 2024</p>
+        <p className="font-sans text-xs text-gold/70 tracking-widest uppercase mt-2">Last Updated: June 2026</p>
       </div>
       <div className="page-container py-12 max-w-4xl mx-auto">
         <div className="bg-white shadow-card p-8 md:p-12 font-sans text-luxury-muted leading-relaxed space-y-6">
