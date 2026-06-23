@@ -27,8 +27,7 @@ const emailWrapper = (content) => `
 Sastri Gari Street 
 Prasadampadu
 Vijayawada 
-8374797955
-8885372979 – 521108</p>
+8374797955 – 521108</p>
           <p style="font-family:Arial,sans-serif;font-size:12px;color:#888;margin:0;">
             <a href="mailto:srikalacouture@gmail.com" style="color:${BRAND_GOLD};text-decoration:none;">srikalacouture@gmail.com</a> &nbsp;·&nbsp; +91 98765 43210
           </p>
