@@ -155,8 +155,8 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Main Container */}
-      <div className="page-container py-6 md:py-16 px-4">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
+     <div className="page-container py-8 md:py-20 px-4">
+       <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
           
           {/* Images Section */}
           <div className="flex flex-col gap-3">
@@ -164,7 +164,9 @@ export default function ProductDetailPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative overflow-hidden bg-luxury-beige aspect-[3/4] w-full rounded-lg md:cursor-zoom-in"
+             className =
+  'relative overflow-hidden bg-luxury-beige aspect-square sm:aspect-[3/4] w-full rounded-xl shadow-lg md:cursor-zoom-in'
+
               onMouseEnter={() => setZoom(true)}
               onMouseLeave={() => setZoom(false)}
               onMouseMove={handleMouseMove}
@@ -202,7 +204,7 @@ export default function ProductDetailPage() {
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`w-16 h-20 sm:w-20 sm:h-24 flex-shrink-0 overflow-hidden border-2 transition-all snap-start rounded ${
+                  className={`w-20 h-24 sm:w-24 sm:h-28 flex-shrink-0 overflow-hidden border-2 transition-all duration-300 snap-start rounded-lg ${
                     i === selectedImage
                       ? 'border-gold'
                       : 'border-gray-200 hover:border-gray-400'
@@ -223,7 +225,9 @@ export default function ProductDetailPage() {
             <p className="font-sans text-[10px] sm:text-xs text-luxury-muted tracking-widest uppercase mb-1.5">
               {product.category?.name} · SKU: {product.sku}
             </p>
-            <h1 className="font-display text-xl sm:text-2xl md:text-4xl text-luxury-dark leading-snug mb-3">
+            <h1 className =
+  'font-display text-2xl sm:text-3xl md:text-5xl text-luxury-dark leading-tight mb-4'
+>
               {product.name}
             </h1>
 
@@ -240,13 +244,14 @@ export default function ProductDetailPage() {
             )}
 
             {/* Price Tags */}
-            <div className="flex flex-wrap items-baseline gap-2 mb-5">
-              <span className="font-display text-2xl sm:text-3xl text-emerald-900">{formatPrice(displayPrice)}</span>
+           <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className = 'font-display text-3xl sm:text-4xl text-emerald-900'>{formatPrice(displayPrice)}</span>
               {product.isOnSale && product.salePrice && (
-                <span className="font-sans text-sm sm:text-lg text-gray-400 line-through">{formatPrice(product.price)}</span>
+                <span className = 'font-sans text-base sm:text-xl text-gray-400 line-through' >{formatPrice(product.price)}</span>
               )}
               {discount > 0 && (
-                <span className="font-sans text-xs sm:text-sm text-red-500 font-medium">{discount}% Off</span>
+                <span className =
+  'px-2 py-1 rounded-full bg-red-100 text-red-600 text-xs font-semibold'>{discount}% Off</span>
               )}
             </div>
 
@@ -292,9 +297,10 @@ export default function ProductDetailPage() {
                   className="w-9 h-9 flex items-center justify-center hover:bg-luxury-beige transition-colors">
                   <FiMinus size={12} />
                 </button>
-                <span className="w-10 text-center font-sans text-sm">{quantity}</span>
+               <span className="w-12 text-center font-sans text-base font-semibold">{quantity}</span>
                 <button onClick={() => setQuantity(q => Math.min(product.stock, q + 1))}
-                  className="w-9 h-9 flex items-center justify-center hover:bg-luxury-beige transition-colors">
+                  className =
+  'w-12 h-12 flex items-center justify-center hover:bg-luxury-beige transition-colors'>
                   <FiPlus size={12} />
                 </button>
               </div>
@@ -304,11 +310,11 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Action buttons (Bag, Wishlist, Share) */}
-            <div className="flex gap-2 mb-4">
+           <div className="sticky bottom-0 left-0 z-40 bg-white p-3 border-t border-gray-200 flex gap-2 mb-4 md:static md:bg-transparent md:border-0 md:p-0">
               <button
                 onClick={handleAddToCart}
                 disabled={!product.isInStock}
-                className={`flex-1 h-11 text-xs btn-luxury justify-center rounded gap-2 ${
+               className={`flex-1 h-14 text-sm btn-luxury justify-center rounded-xl gap-3 font-semibold shadow-lg ${
                   !product.isInStock ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
@@ -320,7 +326,7 @@ export default function ProductDetailPage() {
                 onClick={() => {
                   user ? dispatch(toggleWishlist(product._id)) : toast.error('Please login')
                 }}
-                className={`h-11 w-11 border flex items-center justify-center transition-all rounded ${
+                className={`h-14 w-14 border flex items-center justify-center transition-all rounded ${
                   isWishlisted
                     ? 'border-red-400 bg-red-50 text-red-500'
                     : 'border-gray-200 text-luxury-dark hover:border-gold hover:text-gold'
@@ -336,7 +342,7 @@ export default function ProductDetailPage() {
                     url: window.location.href,
                   }).catch(() => {})
                 }
-                className="h-11 w-11 border border-gray-200 flex items-center justify-center text-luxury-dark hover:border-gold hover:text-gold transition-all rounded"
+                className="h-14 w-14 border border-gray-200 flex items-center justify-center text-luxury-dark hover:border-gold hover:text-gold transition-all rounded"
               >
                 <FiShare2 size={16} />
               </button>
@@ -345,23 +351,28 @@ export default function ProductDetailPage() {
             {/* Chat Action Links */}
             <div className="flex flex-col gap-2 mb-5">
               <button onClick={() => productEnquiry(product)}
-                className="flex-1 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] py-2.5 rounded font-sans text-[11px] tracking-widest uppercase hover:bg-[#25D366] hover:text-white transition-all duration-300">
+                className =
+  'flex items-center justify-center gap-3 bg-[#25D366] text-white h-14 rounded-xl font-semibold shadow-lg hover:opacity-90 transition'>
                 <FaWhatsapp size={14} /> Enquire on WhatsApp
               </button>
               <button onClick={() => customOrderEnquiry(product)}
-                className="flex-1 flex items-center justify-center gap-2 border border-emerald-900 text-emerald-900 py-2.5 rounded font-sans text-[11px] tracking-widest uppercase hover:bg-emerald-900 hover:text-white transition-all duration-300">
+                className =
+  'flex items-center justify-center gap-3 border-2 border-emerald-900 text-emerald-900 h-14 rounded-xl font-semibold hover:bg-emerald-900 hover:text-white transition'>
                 Custom Order
               </button>
             </div>
 
             {/* Highlights Bar */}
-            <div className="grid grid-cols-3 gap-1 py-4 border-y border-gray-100 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-gray-100">
               {[
                 { icon: '🔒', label: 'Secure Payment' },
                 { icon: '📦', label: 'Fast Shipping' },
                 { icon: '↩️', label: '7-Day Returns' },
               ].map(g => (
-                <div key={g.label}>
+                <div
+  key={g.label}
+  className="border rounded-xl p-4 text-center bg-white shadow-sm hover:shadow-md transition"
+>
                   <p className="text-base mb-0.5">{g.icon}</p>
                   <p className="font-sans text-[10px] sm:text-xs text-luxury-muted scale-95">{g.label}</p>
                 </div>
@@ -372,10 +383,10 @@ export default function ProductDetailPage() {
 
         {/* Tabbed Navigation Layout */}
         <div className="mt-12">
-          <div className="grid grid-cols-3 border-b border-gray-200 mb-5">
+         <div className="flex overflow-x-auto scrollbar-hide border-b border-gray-200 mb-6">
             {tabs.map(tab => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`py-2.5 text-center font-sans text-[11px] sm:text-xs tracking-wide uppercase transition-all ${activeTab === tab.id ? 'border-b-2 border-gold text-gold font-medium' : 'text-luxury-muted hover:text-luxury-dark'}`}>
+                className={`min-w-[150px] py-4 text-center font-sans text-[11px] sm:text-xs tracking-wide uppercase transition-all ${activeTab === tab.id ? 'border-b-2 border-gold text-gold font-medium' : 'text-luxury-muted hover:text-luxury-dark'}`}>
                 {tab.label}
               </button>
             ))}
@@ -383,7 +394,8 @@ export default function ProductDetailPage() {
 
           {activeTab === 'description' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="prose max-w-none px-1">
-              <p className="font-sans text-xs sm:text-sm md:text-base text-luxury-muted leading-7 whitespace-pre-line break-words">{product.description}</p>
+              <p className =
+  'font-sans text-sm md:text-base text-luxury-muted leading-8 whitespace-pre-line break-words'>{product.description}</p>
             </motion.div>
           )}
 
@@ -433,7 +445,7 @@ export default function ProductDetailPage() {
               ) : (
                 <div className="space-y-4">
                   {product.reviews?.map((r, i) => (
-                    <div key={i} className="border-b border-gray-100 pb-4 last:border-0">
+                    <div key={i} className = 'bg-white rounded-xl shadow-sm p-5 mb-4'>
                       <div className="flex items-center gap-3 mb-1.5">
                         <div className="w-8 h-8 rounded bg-emerald-900 flex items-center justify-center flex-shrink-0">
                           <span className="font-sans text-white text-xs font-bold">{r.name?.charAt(0)}</span>
@@ -452,7 +464,7 @@ export default function ProductDetailPage() {
               )}
               
               {/* Review Creator Form inside the active context */}
-              <div className="bg-white border border-gray-100 p-4 sm:p-6 rounded-lg mt-6">
+              <div className = 'bg-white border border-gray-100 p-6 rounded-2xl shadow-sm mt-8'>
                 <h3 className="font-display text-lg sm:text-xl text-luxury-dark mb-3">
                   Write a Review
                 </h3>
