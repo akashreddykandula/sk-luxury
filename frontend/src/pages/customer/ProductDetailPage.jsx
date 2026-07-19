@@ -60,7 +60,7 @@ export default function ProductDetailPage() {
   }, [product])
 
   if (loading) return (
-    <div className="page-container py-12 px-4">
+    <div className="page-container py-12 px-4 max-w-full overflow-hidden">
       <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         <div className="skeleton aspect-[3/4] w-full rounded-lg" />
         <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
   )
 
   if (!product) return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 max-w-full overflow-hidden">
       <p className="font-display text-2xl text-luxury-dark mb-4">Product not found</p>
       <Link to="/collections" className="btn-luxury">Browse Collections</Link>
     </div>
@@ -133,15 +133,15 @@ export default function ProductDetailPage() {
   ]
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       <Helmet>
         <title>{product.name} | SK Luxury</title>
         <meta name="description" content={product.shortDescription || product.description?.slice(0, 160)} />
       </Helmet>
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb - Added touch drag support */}
       <div className="bg-luxury-beige/50 border-b border-gray-100 overflow-x-auto scrollbar-hide">
-        <div className="page-container py-3 px-4 whitespace-nowrap">
+        <div className="page-container py-3 px-4 whitespace-nowrap min-w-max">
           <nav className="flex items-center gap-2 font-sans text-xs text-luxury-muted">
             <Link to="/" className="hover:text-gold transition-colors">Home</Link>
             <FiChevronRight size={12} className="flex-shrink-0" />
@@ -149,24 +149,20 @@ export default function ProductDetailPage() {
             <FiChevronRight size={12} className="flex-shrink-0" />
             <Link to={`/collections/${product.collectionType}`} className="hover:text-gold transition-colors capitalize">{product.collectionType}</Link>
             <FiChevronRight size={12} className="flex-shrink-0" />
-            <span className="text-luxury-dark truncate max-w-[150px]">{product.name}</span>
+            <span className="text-luxury-dark truncate max-w-[120px] sm:max-w-[150px]">{product.name}</span>
           </nav>
         </div>
       </div>
 
       {/* Main Container */}
-     <div className="page-container py-8 md:py-20 px-4">
-       <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+      <div className="page-container py-6 md:py-16 px-4 max-w-full overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
           
           {/* Images Section */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 max-w-full overflow-hidden">
             {/* Main Image View */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-             className =
-  'relative overflow-hidden bg-luxury-beige aspect-square sm:aspect-[3/4] w-full rounded-xl shadow-lg md:cursor-zoom-in'
-
+            <div
+              className="relative overflow-hidden bg-luxury-beige aspect-[3/4] w-full rounded-lg md:cursor-zoom-in"
               onMouseEnter={() => setZoom(true)}
               onMouseLeave={() => setZoom(false)}
               onMouseMove={handleMouseMove}
@@ -196,15 +192,15 @@ export default function ProductDetailPage() {
                   New
                 </span>
               )}
-            </motion.div>
+            </div>
 
-            {/* Thumbnails Below with horizontal scrolling on touch screens */}
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x">
+            {/* Thumbnails */}
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x max-w-full">
               {images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setSelectedImage(i)}
-                  className={`w-20 h-24 sm:w-24 sm:h-28 flex-shrink-0 overflow-hidden border-2 transition-all duration-300 snap-start rounded-lg ${
+                  className={`w-16 h-20 sm:w-20 sm:h-24 flex-shrink-0 overflow-hidden border-2 transition-all snap-start rounded ${
                     i === selectedImage
                       ? 'border-gold'
                       : 'border-gray-200 hover:border-gray-400'
@@ -221,13 +217,11 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Product Specifications Info */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center max-w-full overflow-hidden">
             <p className="font-sans text-[10px] sm:text-xs text-luxury-muted tracking-widest uppercase mb-1.5">
               {product.category?.name} · SKU: {product.sku}
             </p>
-            <h1 className =
-  'font-display text-2xl sm:text-3xl md:text-5xl text-luxury-dark leading-tight mb-4'
->
+            <h1 className="font-display text-xl sm:text-2xl md:text-4xl text-luxury-dark leading-snug mb-3 break-words">
               {product.name}
             </h1>
 
@@ -244,14 +238,13 @@ export default function ProductDetailPage() {
             )}
 
             {/* Price Tags */}
-           <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className = 'font-display text-3xl sm:text-4xl text-emerald-900'>{formatPrice(displayPrice)}</span>
+            <div className="flex flex-wrap items-baseline gap-2 mb-5">
+              <span className="font-display text-2xl sm:text-3xl text-emerald-900">{formatPrice(displayPrice)}</span>
               {product.isOnSale && product.salePrice && (
-                <span className = 'font-sans text-base sm:text-xl text-gray-400 line-through' >{formatPrice(product.price)}</span>
+                <span className="font-sans text-sm sm:text-lg text-gray-400 line-through">{formatPrice(product.price)}</span>
               )}
               {discount > 0 && (
-                <span className =
-  'px-2 py-1 rounded-full bg-red-100 text-red-600 text-xs font-semibold'>{discount}% Off</span>
+                <span className="font-sans text-xs sm:text-sm text-red-500 font-medium">{discount}% Off</span>
               )}
             </div>
 
@@ -297,10 +290,9 @@ export default function ProductDetailPage() {
                   className="w-9 h-9 flex items-center justify-center hover:bg-luxury-beige transition-colors">
                   <FiMinus size={12} />
                 </button>
-               <span className="w-12 text-center font-sans text-base font-semibold">{quantity}</span>
+                <span className="w-10 text-center font-sans text-sm">{quantity}</span>
                 <button onClick={() => setQuantity(q => Math.min(product.stock, q + 1))}
-                  className =
-  'w-12 h-12 flex items-center justify-center hover:bg-luxury-beige transition-colors'>
+                  className="w-9 h-9 flex items-center justify-center hover:bg-luxury-beige transition-colors">
                   <FiPlus size={12} />
                 </button>
               </div>
@@ -309,12 +301,12 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Action buttons (Bag, Wishlist, Share) */}
-           <div className="sticky bottom-0 left-0 z-40 bg-white p-3 border-t border-gray-200 flex gap-2 mb-4 md:static md:bg-transparent md:border-0 md:p-0">
+            {/* Action buttons */}
+            <div className="flex gap-2 mb-4 max-w-full">
               <button
                 onClick={handleAddToCart}
                 disabled={!product.isInStock}
-               className={`flex-1 h-14 text-sm btn-luxury justify-center rounded-xl gap-3 font-semibold shadow-lg ${
+                className={`flex-1 h-11 text-xs btn-luxury justify-center rounded gap-2 ${
                   !product.isInStock ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
@@ -326,7 +318,7 @@ export default function ProductDetailPage() {
                 onClick={() => {
                   user ? dispatch(toggleWishlist(product._id)) : toast.error('Please login')
                 }}
-                className={`h-14 w-14 border flex items-center justify-center transition-all rounded ${
+                className={`h-11 w-11 flex-shrink-0 border flex items-center justify-center transition-all rounded ${
                   isWishlisted
                     ? 'border-red-400 bg-red-50 text-red-500'
                     : 'border-gray-200 text-luxury-dark hover:border-gold hover:text-gold'
@@ -342,69 +334,63 @@ export default function ProductDetailPage() {
                     url: window.location.href,
                   }).catch(() => {})
                 }
-                className="h-14 w-14 border border-gray-200 flex items-center justify-center text-luxury-dark hover:border-gold hover:text-gold transition-all rounded"
+                className="h-11 w-11 flex-shrink-0 border border-gray-200 flex items-center justify-center text-luxury-dark hover:border-gold hover:text-gold transition-all rounded"
               >
                 <FiShare2 size={16} />
               </button>
             </div>
 
-            {/* Chat Action Links */}
-            <div className="flex flex-col gap-2 mb-5">
+            {/* Chat Action Links - Fixed text expansion issues on small screens */}
+            <div className="flex flex-col gap-2 mb-5 max-w-full">
               <button onClick={() => productEnquiry(product)}
-                className =
-  'flex items-center justify-center gap-3 bg-[#25D366] text-white h-14 rounded-xl font-semibold shadow-lg hover:opacity-90 transition'>
+                className="w-full flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] py-2.5 rounded font-sans text-[11px] tracking-wider uppercase hover:bg-[#25D366] hover:text-white transition-all duration-300">
                 <FaWhatsapp size={14} /> Enquire on WhatsApp
               </button>
               <button onClick={() => customOrderEnquiry(product)}
-                className =
-  'flex items-center justify-center gap-3 border-2 border-emerald-900 text-emerald-900 h-14 rounded-xl font-semibold hover:bg-emerald-900 hover:text-white transition'>
+                className="w-full flex items-center justify-center gap-2 border border-emerald-900 text-emerald-900 py-2.5 rounded font-sans text-[11px] tracking-wider uppercase hover:bg-emerald-900 hover:text-white transition-all duration-300">
                 Custom Order
               </button>
             </div>
 
             {/* Highlights Bar */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-gray-100">
+            <div className="grid grid-cols-3 gap-1 py-4 border-y border-gray-100 text-center">
               {[
                 { icon: '🔒', label: 'Secure Payment' },
                 { icon: '📦', label: 'Fast Shipping' },
                 { icon: '↩️', label: '7-Day Returns' },
               ].map(g => (
-                <div
-  key={g.label}
-  className="border rounded-xl p-4 text-center bg-white shadow-sm hover:shadow-md transition"
->
+                <div key={g.label}>
                   <p className="text-base mb-0.5">{g.icon}</p>
-                  <p className="font-sans text-[10px] sm:text-xs text-luxury-muted scale-95">{g.label}</p>
+                  <p className="font-sans text-[10px] text-luxury-muted truncate px-0.5">{g.label}</p>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Tabbed Navigation Layout */}
-        <div className="mt-12">
-         <div className="flex overflow-x-auto scrollbar-hide border-b border-gray-200 mb-6">
+        <div className="mt-12 max-w-full overflow-hidden">
+          <div className="grid grid-cols-3 border-b border-gray-200 mb-5">
             {tabs.map(tab => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`min-w-[150px] py-4 text-center font-sans text-[11px] sm:text-xs tracking-wide uppercase transition-all ${activeTab === tab.id ? 'border-b-2 border-gold text-gold font-medium' : 'text-luxury-muted hover:text-luxury-dark'}`}>
+                className={`py-2.5 text-center font-sans text-[11px] tracking-wide uppercase transition-all ${activeTab === tab.id ? 'border-b-2 border-gold text-gold font-medium' : 'text-luxury-muted hover:text-luxury-dark'}`}>
                 {tab.label}
               </button>
             ))}
           </div>
 
           {activeTab === 'description' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="prose max-w-none px-1">
-              <p className =
-  'font-sans text-sm md:text-base text-luxury-muted leading-8 whitespace-pre-line break-words'>{product.description}</p>
-            </motion.div>
+            <div className="prose max-w-none px-1">
+              <p className="font-sans text-xs sm:text-sm md:text-base text-luxury-muted leading-7 whitespace-pre-line break-words">{product.description}</p>
+            </div>
           )}
 
           {activeTab === 'details' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-1">
+            <div className="px-1 max-w-full overflow-hidden">
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
+                <div className="w-full overflow-x-auto">
                   <h3 className="font-sans text-xs font-semibold tracking-widest uppercase text-luxury-dark mb-3">Product Details</h3>
-                  <table className="w-full text-xs sm:text-sm">
+                  <table className="w-full text-xs sm:text-sm min-w-full">
                     <tbody className="divide-y divide-gray-100">
                       {[
                         ['SKU', product.sku],
@@ -421,8 +407,8 @@ export default function ProductDetailPage() {
                         ]),
                       ].filter(([, v]) => v).map(([k, v]) => (
                         <tr key={k}>
-                          <td className="py-2 font-sans text-[10px] sm:text-xs text-luxury-muted tracking-widest uppercase w-28 sm:w-36">{k}</td>
-                          <td className="py-2 font-sans text-luxury-dark">{v}</td>
+                          <td className="py-2 font-sans text-[10px] text-luxury-muted tracking-wider uppercase w-24 sm:w-36 flex-shrink-0">{k}</td>
+                          <td className="py-2 font-sans text-luxury-dark break-words">{v}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -431,21 +417,21 @@ export default function ProductDetailPage() {
                 {(product.careInstructions || product.jewelleryType) && (
                   <div>
                     <h3 className="font-sans text-xs font-semibold tracking-widest uppercase text-luxury-dark mb-3">Care Instructions</h3>
-                    <p className="font-sans text-xs sm:text-sm text-luxury-muted leading-relaxed">{product.careInstructions}</p>
+                    <p className="font-sans text-xs sm:text-sm text-luxury-muted leading-relaxed break-words">{product.careInstructions}</p>
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           )}
 
           {activeTab === 'reviews' && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="px-1 space-y-6">
+            <div className="px-1 space-y-6 max-w-full overflow-hidden">
               {product.reviews?.length === 0 ? (
                 <p className="font-sans text-xs sm:text-sm text-luxury-muted text-center py-6">No reviews yet. Be the first to review!</p>
               ) : (
                 <div className="space-y-4">
                   {product.reviews?.map((r, i) => (
-                    <div key={i} className = 'bg-white rounded-xl shadow-sm p-5 mb-4'>
+                    <div key={i} className="border-b border-gray-100 pb-4 last:border-0">
                       <div className="flex items-center gap-3 mb-1.5">
                         <div className="w-8 h-8 rounded bg-emerald-900 flex items-center justify-center flex-shrink-0">
                           <span className="font-sans text-white text-xs font-bold">{r.name?.charAt(0)}</span>
@@ -457,15 +443,15 @@ export default function ProductDetailPage() {
                           </div>
                         </div>
                       </div>
-                      <p className="font-sans text-xs sm:text-sm text-luxury-muted leading-relaxed pl-1">{r.comment}</p>
+                      <p className="font-sans text-xs sm:text-sm text-luxury-muted leading-relaxed pl-1 break-words">{r.comment}</p>
                     </div>
                   ))}
                 </div>
               )}
               
-              {/* Review Creator Form inside the active context */}
-              <div className = 'bg-white border border-gray-100 p-6 rounded-2xl shadow-sm mt-8'>
-                <h3 className="font-display text-lg sm:text-xl text-luxury-dark mb-3">
+              {/* Form Layout */}
+              <div className="bg-white border border-gray-100 p-4 rounded-lg mt-6 max-w-full">
+                <h3 className="font-display text-lg text-luxury-dark mb-3">
                   Write a Review
                 </h3>
 
@@ -474,7 +460,7 @@ export default function ProductDetailPage() {
                   <select
                     value={reviewRating}
                     onChange={e => setReviewRating(Number(e.target.value))}
-                    className="luxury-input text-xs sm:text-sm h-10 mt-1"
+                    className="luxury-input text-xs h-10 mt-1 w-full"
                   >
                     <option value={5}>★★★★★ (5 Stars)</option>
                     <option value={4}>★★★★☆ (4 Stars)</option>
@@ -489,7 +475,7 @@ export default function ProductDetailPage() {
                   <textarea
                     value={reviewComment}
                     onChange={e => setReviewComment(e.target.value)}
-                    className="luxury-input text-xs sm:text-sm h-24 mt-1 resize-none"
+                    className="luxury-input text-xs h-24 mt-1 resize-none w-full"
                     placeholder="Share your experience..."
                   />
                 </div>
@@ -497,18 +483,18 @@ export default function ProductDetailPage() {
                 <button
                   onClick={submitReview}
                   disabled={reviewLoading}
-                  className="btn-luxury w-full sm:w-auto h-11 text-xs px-6 rounded justify-center"
+                  className="btn-luxury w-full h-11 text-xs rounded justify-center"
                 >
                   {reviewLoading ? 'Submitting...' : 'Submit Review'}
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
 
       <RelatedProducts categoryId={product.category?._id} collectionType={product.collectionType} excludeId={product._id} />
       <RecentlyViewed excludeId={product._id} />
-    </>
+    </div>
   )
 }
